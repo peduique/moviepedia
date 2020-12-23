@@ -1,3 +1,7 @@
+# Running on Heroku
+
+This project is running on Heroku at [MoviePedia](https://moviepe.herokuapp.com/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
