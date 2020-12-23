@@ -13,3 +13,14 @@ export const Title = styled.h2`
   color: #333;
   margin-bottom: 30px;
 `;
+
+export const Filter = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const Label = styled.label`
+  margin-right: 10px;
+  color: #555;
+`;
