@@ -5,11 +5,20 @@ export const Container = styled.div``;
 export const Movie = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const FeaturedImage = styled.img`
   margin-right: 40px;
   border-radius: 5px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Content = styled.div``;

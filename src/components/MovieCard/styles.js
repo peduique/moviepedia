@@ -17,6 +17,10 @@ export const Image = styled.img`
   object-fit: cover;
   margin-bottom: 1em;
   border-radius: 0.3em;
+
+  @media (max-width: 767px) {
+    height: 250px;
+  }
 `;
 
 export const Title = styled.h2`

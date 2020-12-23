@@ -6,6 +6,10 @@ export const List = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 35px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 `;
 
 export const Title = styled.h2`

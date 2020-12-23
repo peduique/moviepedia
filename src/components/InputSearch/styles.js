@@ -10,6 +10,10 @@ export const Container = styled.div`
   border-radius: 40px;
   width: 40vw;
   margin: 0 auto;
+
+  @media (max-width: 767px) {
+    width: 80vw;
+  }
 `;
 
 export const Input = styled.input.attrs({ type: 'text' })`
