@@ -9,7 +9,7 @@ import { Container, Image, Title, Rating } from './styles';
 const MovieCard = ({ id, original_title, poster_path, vote_average }) => {
   return (
     <Container to={`/movies/${id}`}>
-      <Image src={`${baseImg}/w200${poster_path}`} />
+      <Image src={`${baseImg}/w200${poster_path}`} alt={original_title} />
       <Title>{original_title}</Title>
       <Rating>
         <Star variant="active" size={16} /> {vote_average}
