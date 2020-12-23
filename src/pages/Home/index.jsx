@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-import Logo from '~/components/Header';
 import Wrapper from '~/components/Wrapper';
 import InputSearch from '~/components/InputSearch';
 import ListMovies from '~/components/ListMovies';
+import Loading from '~/components/Loading';
 
 import api from '~/services/api';
 
-import { Container, Header } from './styles';
+import { Container, Header, Logo } from './styles';
 
 const Home = () => {
   const [movies, setMovies] = useState();
+  const [loading, setLoading] = useState(true);
 
   const fetchMovies = async () => {
     try {
       const payload = { params: { sort_by: 'popularity.desc' } };
       const res = await api.get('discover/movie', payload);
       setMovies({ type: 'load', movies: res.data.results });
+      setLoading(false);
     } catch (error) {
       // console.log(error);
     }
@@ -27,10 +29,12 @@ const Home = () => {
   }, []);
 
   const fetchSearchMovie = async (query) => {
+    setLoading(true);
     try {
       const payload = { params: { query } };
       const res = await api.get('search/movie', payload);
       setMovies({ type: 'search', movies: res.data.results });
+      setLoading(false);
     } catch (error) {
       // console.log(error);
     }
@@ -48,7 +52,7 @@ const Home = () => {
         </Wrapper>
       </Header>
 
-      <Wrapper>{!!movies && <ListMovies {...movies} />}</Wrapper>
+      <Wrapper>{loading ? <Loading /> : <ListMovies {...movies} />}</Wrapper>
     </Container>
   );
 };
