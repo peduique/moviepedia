@@ -5,6 +5,7 @@ import Wrapper from '~/components/Wrapper';
 import ListMovies from '~/components/ListMovies';
 import Loading from '~/components/Loading';
 import Header from '~/components/Header';
+import ErrorMessage from '~/components/ErrorMessage';
 
 import api from '~/services/api';
 
@@ -15,6 +16,7 @@ const Home = ({ location }) => {
   const [movies, setMovies] = useState();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(urlParam.get('query'));
+  const [error, setError] = useState(false);
 
   const fetchMovies = async () => {
     try {
@@ -22,8 +24,9 @@ const Home = ({ location }) => {
       const res = await api.get('discover/movie', payload);
       setMovies({ type: 'load', movies: res.data.results });
       setLoading(false);
-    } catch (error) {
-      // console.log(error);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
     }
   };
 
@@ -34,8 +37,9 @@ const Home = ({ location }) => {
       const res = await api.get('search/movie', payload);
       setMovies({ type: 'search', movies: res.data.results });
       setLoading(false);
-    } catch (error) {
-      // console.log(error);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
     }
   };
 
@@ -47,6 +51,12 @@ const Home = ({ location }) => {
     }
   }, [search]);
 
+  const MoviesResult = () => {
+    if (error) return <ErrorMessage />;
+
+    return <ListMovies {...movies} />;
+  };
+
   return (
     <Container>
       <Header
@@ -54,7 +64,7 @@ const Home = ({ location }) => {
         onClear={() => fetchMovies()}
         search={search}
       />
-      <Wrapper>{loading ? <Loading /> : <ListMovies {...movies} />}</Wrapper>
+      <Wrapper>{loading ? <Loading /> : <MoviesResult />}</Wrapper>
     </Container>
   );
 };
