@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 
+import Loading from '~/components/Loading';
+
 const HomePage = lazy(() => import('~/pages/Home'));
 const Movies = lazy(() => import('~/pages/Movies'));
 
@@ -11,7 +13,7 @@ const App = () => {
     <BrowserRouter>
       <GlobalStyle />
 
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/movies/:id" component={Movies} />

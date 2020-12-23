@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Container, Input, SearchButton, ClearButton } from './styles';
 
-const Search = ({ onSearch, onClear }) => {
-  const [query, setQuery] = useState();
+const Search = ({ onSearch, onClear, search }) => {
+  const [query, setQuery] = useState(search);
 
   const handleClearSearch = () => {
     setQuery('');
@@ -37,5 +37,11 @@ export default Search;
 
 Search.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  onClear: PropTypes.func.isRequired,
+  onClear: PropTypes.func,
+  search: PropTypes.string,
+};
+
+Search.defaultProps = {
+  onClear: () => {},
+  search: '',
 };
